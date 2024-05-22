@@ -15,14 +15,14 @@ The following are the environmental science education plan and number of questio
 ## Data Collection and Process workflows: 
 ![workflow.png](fig/workflow.png)
 
-## Scoring Method
+### Scoring Method
 
 EnviroExam uses accuracy as the basis for scoring each subject's questions and employs a comprehensive metric when calculating the total score. The formula derivation process is as follows:
 
 1. **Calculation of the average score $M$**: For each large language model, compute the arithmetic mean of all its test scores (accuracy):
 
     <p align="center">
-        <img src="fig/1.svg" alt="Formula 1">
+        <img src="https://latex.codecogs.com/png.latex?M%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5En%20s_i" alt="Formula 1">
     </p>
 
     Where $s_i$ is the score of a large language model on a specific test, and $n$ is the total number of tests.
@@ -30,19 +30,19 @@ EnviroExam uses accuracy as the basis for scoring each subject's questions and e
 2. **Calculate the standard deviation**: Compute the standard deviation of all test scores relative to the mean:
 
     <p align="center">
-        <img src="fig/2.svg" alt="Formula 2">
+        <img src="https://latex.codecogs.com/png.latex?%5Csigma%20%3D%20%5Csqrt%7B%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5En%20%28s_i%20-%201%29%5E2%7D" alt="Formula 2">
     </p>
 
 3. **Calculate the coefficient of variation (CV)**: The coefficient of variation is the ratio of the standard deviation to the mean and is used to measure the relative dispersion of the scores:
 
     <p align="center">
-        <img src="fig/3.svg" alt="Formula 3">
+        <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCV%7D%20%3D%20%5Cfrac%7B%5Csigma%7D%7BM%7D" alt="Formula 3">
     </p>
 
 4. **Calculate the original composite index $I$**: The original composite index $I$ is defined as a function of the mean score and the coefficient of variation:
 
     <p align="center">
-        <img src="fig/4.svg" alt="Formula 4">
+        <img src="https://latex.codecogs.com/png.latex?I%20%3D%20%5Cleft%5C%7B%5Cbegin%7Barray%7D%7Bll%7D%20M%20%5Ctimes%20%281%20-%20%5Ctext%7BCV%7D%29%2C%20%26%200%20%5Cleq%20%5Ctext%7BCV%7D%20%5Cleq%201%20%5C%5C%20%5Ctext%7Bmodel%20void%7D%2C%20%26%20%5Ctext%7BCV%7D%20%3E%201%20%5Cend%7Barray%7D%5Cright." alt="Formula 4">
     </p>
 
 \* When CV is greater than 1, it indicates that the relative variability of the data is very high, and the mean can no longer effectively represent the central tendency of the data [source](https://www.frontiersin.org/articles/10.3389/fams.2019.00043/full).
