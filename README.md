@@ -15,14 +15,14 @@ The following are the environmental science education plan and number of questio
 ## Data Collection and Process workflows: 
 ![workflow.png](fig/workflow.png)
 
-## Scoring Method
+### Scoring Method
 
 EnviroExam uses accuracy as the basis for scoring each subject's questions and employs a comprehensive metric when calculating the total score. The formula derivation process is as follows:
 
 1. **Calculation of the average score $M$**: For each large language model, compute the arithmetic mean of all its test scores (accuracy):
 
     <p align="center">
-    ![Formula 1](fig/1.png)
+        <img src="https://raw.githubusercontent.com/EnviroScientist/enviroexam/main/fig/1.svg" alt="Formula 1">
     </p>
 
     Where $s_i$ is the score of a large language model on a specific test, and $n$ is the total number of tests.
@@ -30,19 +30,19 @@ EnviroExam uses accuracy as the basis for scoring each subject's questions and e
 2. **Calculate the standard deviation**: Compute the standard deviation of all test scores relative to the mean:
 
     <p align="center">
-    ![Formula 2](fig/2.png)
+        <img src="https://raw.githubusercontent.com/EnviroScientist/enviroexam/main/fig/2.svg" alt="Formula 2">
     </p>
 
 3. **Calculate the coefficient of variation (CV)**: The coefficient of variation is the ratio of the standard deviation to the mean and is used to measure the relative dispersion of the scores:
 
     <p align="center">
-    ![Formula 3](fig/3.png)
+        <img src="https://raw.githubusercontent.com/EnviroScientist/enviroexam/main/fig/3.svg" alt="Formula 3">
     </p>
 
 4. **Calculate the original composite index $I$**: The original composite index $I$ is defined as a function of the mean score and the coefficient of variation:
 
     <p align="center">
-    ![Formula 4](fig/4.png)
+        <img src="https://raw.githubusercontent.com/EnviroScientist/enviroexam/main/fig/4.svg" alt="Formula 4">
     </p>
 
 \* When CV is greater than 1, it indicates that the relative variability of the data is very high, and the mean can no longer effectively represent the central tendency of the data [source](https://www.frontiersin.org/articles/10.3389/fams.2019.00043/full).
