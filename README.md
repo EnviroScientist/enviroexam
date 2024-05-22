@@ -15,10 +15,44 @@ The following are the environmental science education plan and number of questio
 ## Data Collection and Process workflows: 
 ![workflow.png](fig/workflow.png)
 
+## Scoring Method
+
+EnviroExam uses accuracy as the basis for scoring each subject's questions and employs a comprehensive metric when calculating the total score. The formula derivation process is as follows:
+
+1. **Calculation of the average score \( M \)**: For each large language model, compute the arithmetic mean of all its test scores (accuracy):
+    \[
+    M = \frac{1}{n} \sum_{i=1}^{n} s_i
+    \]
+    Where \( s_i \) is the score of a large language model on a specific test, and \( n \) is the total number of tests.
+
+2. **Calculate the standard deviation**: Compute the standard deviation of all test scores relative to the mean:
+    \[
+    \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (s_i - 1)^2}
+    \]
+
+3. **Calculate the coefficient of variation (CV)**: The coefficient of variation is the ratio of the standard deviation to the mean and is used to measure the relative dispersion of the scores:
+    \[
+    \text{CV} = \frac{\sigma}{M}
+    \]
+
+4. **Calculate the original composite index \( I \)**: The original composite index \( I \) is defined as a function of the mean score and the coefficient of variation:
+    \[
+    I = 
+    \left\{
+    \begin{array}{ll}
+    M \times (1 - \text{CV}), & 0 \leq \text{CV} \leq 1 \\
+    \text{model void}^*, & \text{CV} > 1
+    \end{array}
+    \right.
+    \]
+
+\* When CV is greater than 1, it indicates that the relative variability of the data is very high, and the mean can no longer effectively represent the central tendency of the data [source](https://www.frontiersin.org/articles/10.3389/fams.2019.00043/full).
 
 
-## News
-* **[2024.05.22]** EnviroExam has been accepted to ArXiv 🎉🎉🎉
+
+[//]: # (## News)
+
+[//]: # (* **[2024.05.22]** EnviroExam has been accepted to ArXiv 🎉🎉🎉)
 
 
 
@@ -112,7 +146,7 @@ Below are zero-shot and five-shot accuracies from the models that we evaluate in
 
 Below is a dev example from environmental geographic information system:
 
-  ```
+```
 id: 1
 question:What is the purpose of using "spatial interpolation" in GIS?
 A: Fill in the blank areas in geographic data
@@ -120,12 +154,24 @@ B: Improve the resolution of the map
 C: Connect different GIS systems
 D: Generate a three-dimensional terrain map
 answer: A
-  ```
+ ```
 
 
 
-## How to Evaluate on EnviroExam
-- [x] Todo
+## How to Evaluate EnviroExam on OpenCompass
+1. For detailed installation steps, please refer to the official [OpenCompass](https://github.com/open-compass/opencompass) documentation. However, the general installation method is as follows:
+```bash
+conda create --name opencompass python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
+conda activate opencompass
+git clone https://github.com/open-compass/opencompass opencompass
+cd opencompass
+pip install -e .
+```
+2. Since OpenCompass has not yet included EnviroExam in the default test sets, it needs to be added manually.
+
+
+
+
 
 
 
