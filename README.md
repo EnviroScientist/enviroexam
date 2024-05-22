@@ -104,7 +104,7 @@ Below are zero-shot and five-shot accuracies from the models that we evaluate in
 
 - Download the zip file (you can also simply open the following link with the browser):
   ```
-  git clone https://huggingface.co/datasets/enviroscientist/EnviroExam
+git clone https://huggingface.co/datasets/enviroscientist/EnviroExam
   ```
 
 
