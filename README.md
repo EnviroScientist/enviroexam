@@ -20,22 +20,27 @@ The following are the environmental science education plan and number of questio
 EnviroExam uses accuracy as the basis for scoring each subject's questions and employs a comprehensive metric when calculating the total score. The formula derivation process is as follows:
 
 1. **Calculation of the average score \( M \)**: For each large language model, compute the arithmetic mean of all its test scores (accuracy):
+
     \[
     M = \frac{1}{n} \sum_{i=1}^{n} s_i
     \]
+
     Where \( s_i \) is the score of a large language model on a specific test, and \( n \) is the total number of tests.
 
 2. **Calculate the standard deviation**: Compute the standard deviation of all test scores relative to the mean:
+
     \[
     \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (s_i - 1)^2}
     \]
 
 3. **Calculate the coefficient of variation (CV)**: The coefficient of variation is the ratio of the standard deviation to the mean and is used to measure the relative dispersion of the scores:
+
     \[
     \text{CV} = \frac{\sigma}{M}
     \]
 
 4. **Calculate the original composite index \( I \)**: The original composite index \( I \) is defined as a function of the mean score and the coefficient of variation:
+
     \[
     I = 
     \left\{
