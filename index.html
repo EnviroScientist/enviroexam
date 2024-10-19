@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnviroExam: Benchmarking Environmental Science Knowledge of Large Language Models</title>
+    <link rel="icon" href="static/img/logo.png" type="image/icon type">
+    <!-- 指定文档的图标，将显示在浏览器的标签页和书签上。 -->
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <!--    # 引入名为"main_zh.css"的CSS样式表，用于设置文档的主要样式。-->
+    <link rel="stylesheet" href="static/css/nav.css">
+    <!--    # 引入名为"nav.css"的CSS样式表，用于设置文档的导航栏样式。-->
+<!--    <script src="static/javascript/login.js" defer></script>-->
+    <!--    # 引入名为"index.js"的JavaScript文件，用于设置文档的交互行为，其中defer属性表示该脚本将在页面加载后执行。-->
+</head>
+
+<body>
+<!-- 登录框 -->
+<!--<div id="login-box" class="modal">-->
+<!--    <div class="modal-content">-->
+<!--        <span class="close">&times;</span>-->
+<!--        <h2>Login</h2>-->
+<!--        <form id="login-form">-->
+<!--            <input type="hidden" name="action" value="login">-->
+<!--            <label for="username">Username:</label>-->
+<!--            <input type="text" id="username" name="username" required>-->
+<!--            <label for="password">Password:</label>-->
+<!--            <input type="password" id="password" name="password" required>-->
+<!--            <input type="submit" value="Login">-->
+<!--        </form>-->
+<!--        <p>Don't have an account? <span class="switch-link">Register now</span></p>-->
+<!--        <p><a id="forgot-link" href="./static/forgot_password.html">Forgot password?</a></p>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- 注册框 -->
+<!--<div id="register-box" class="modal">-->
+<!--    &lt;!&ndash; 模态框内容 &ndash;&gt;-->
+<!--    <div class="modal-content">-->
+<!--        <span class="close">&times;</span>-->
+<!--        <h2>Register</h2>-->
+<!--        <form id="register-form">-->
+<!--            <input type="hidden" name="action" value="register">-->
+<!--            <label for="new-username">Username:</label>-->
+<!--            <input type="text" id="new-username" name="new-username" required>-->
+<!--            <label for="new-password">Password:</label>-->
+<!--            <input type="password" id="new-password" name="new-password" required>-->
+<!--            <label for="confirm-password">Confirm Password:</label>-->
+<!--            <input type="password" id="confirm-password" name="confirm-password" required>-->
+<!--            <label for="email">Your Email:</label>-->
+<!--            <input type="email" id="email" name="email" required>-->
+<!--            <label for="code">Verification Code:</label>-->
+<!--            <input type="text" id="code" name="code" required>-->
+<!--            <button id="send-code-btn" type="button">Send code</button>-->
+<!--            <input type="submit" value="Register">-->
+<!--            <p>Already have an account? <span class="switch-link">Login now</span></p>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div id="nav">
+    <div id="icon">
+        <img src="static/img/logo.png" id="nav-icon">
+        <a class="nav-button" href="index.html"
+           style="margin-left: 2px; font-size: 24px">EnviroExam
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="#home">Home</a>
+        <!--            <a class="nav-button" href="#dataset">Dataset</a>-->
+        <a class="nav-button" href="#data">Data</a>
+<!--        <a class="nav-button" href="https://arxiv.org/abs/2305.08322">Paper</a>-->
+        <a class="nav-button" href="https://github.com/EnviroScientist/enviroexam">Github</a>
+        <!--            <a class="nav-button" href="#authors">Authors</a>-->
+<!--        <a class="nav-button" href="static/leaderboard.html">Leaderboard</a>-->
+<!--        <a class="nav-button" href="static/user_interface.html">Submit</a>-->
+<!--        <a class="nav-button" href="static/explore.html">Explore</a>-->
+        <!--            <a class="nav-button" href="static/visualize.html">Visualize</a>-->
+        <a class="nav-button" href="#contact">Contact</a>
+<!--        &nbsp; <a class="language" href="#"> EN </a>-->
+<!--        <a class="language"><span>|</span></a>-->
+<!--        <a class="language" href="index_zh.html"> 中 </a>-->
+<!--        <span class="btn-container">-->
+<!--                <span id="loginMsg"></span>-->
+<!--                <button class="btn btn_login" id="loginBtn">Login</button>-->
+<!--                <button class="btn btn_register" id="registerBtn">Register</button>-->
+<!--                <button class="btn btn_logout" id="logoutBtn">Logout</button>-->
+<!--            </span>-->
+    </div>
+</div>
+
+
+<!-- anchor for the home button -->
+<div id="home" style="position: absolute; top: 0;"></div>
+
+<!-- banner -->
+<div id="title">
+    <div id="title-wrapper">
+        <img src="static/img/logo.png" id="title-icon">
+        <p id="title-text">EnviroExam</p>
+    </div>
+    <p id="subtitle-text">
+        Benchmarking Environmental Science Knowledge<br>
+        of Large Language Models
+        <br><br>
+        (2024)
+    </p>
+    <p id="title-padding-bottom">&nbsp;</p>
+</div>
+
+<!-- the main body of the page -->
+<!-- each section uses an empty div as an anchor -->
+<div id="body">
+    <div class="section">
+        <h1>About EnviroExam</h1>
+        <p style="line-height: 150%">
+
+            EnviroExam is a comprehensive evaluation method designed to assess the knowledge of large language models in
+            the field of environmental science. It is based on the curricula of top international universities and includes
+            936 questions across 42 core courses, covering undergraduate, master's, and doctoral levels.
+<!--            You may explore our-->
+<!--            dataset examples at <a class="ext-link" href="static/explore.html">Explore</a>, or check our <a-->
+<!--                class="ext-link" href="https://arxiv.org/abs/2305.08322" target="_blank">paper</a> for more details.-->
+        </p>
+        <div class="example-box">
+            <figure id="example-img">
+                <img src="./static/img/overview.jpg" alt="overview.jpg">
+            </figure>
+        </div>
+    </div>
+
+    <div class="section">
+        <h1>Covered Environmental Science Subjects</h1>
+        <p style="line-height: 150%">
+            EnviroExam includes 936 questions across 42 core courses, encompassing a wide range of environmental science subjects.
+        </p>
+        <div class="example-box">
+            <figure id="example-img1">
+                <img src="./static/img/subject.jpg" alt="subject.jpg">
+            </figure>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="section">
+        <div id="data" class="anchor"></div>
+        <h1>Data</h1>
+        <p>
+            Our data can be directly downloaded on <a class="ext-link" href="https://huggingface.co/datasets/enviroscientist/EnviroExam" target="_blank">Huggingface
+            datasets</a>. Please refer to our <a class="ext-link" href="https://github.com/EnviroScientist/enviroexam" target="_blank">github
+            instructions</a> for how to read and use the data.
+            <!-- <a href="XXX" class="ext-link" target="_blank">PDF</a> -->
+        </p>
+        <!-- <p>
+            <a href="static/img/paper_thumbnail.png" class="ext-link" target="blank">
+                <img src="static/img/paper_thumbnail.png" style="width: 100%;">
+            </a>
+        </p> -->
+    </div>
+
+    <!-- <hr> -->
+    <!-- <div class="section">
+        <div id="dataset" class="anchor"></div>
+        <h1>C-Eval Dataset</h1>
+        <p>
+            Our C-Eval benchmark provides testing in a multi-level and multi-disciplinary
+            manner. It consists of <b>13,637 multiple-choice questions </b>across<b> 51 subjects</b>,
+            ranging in difficulty from junior high school to undergraduate and vocational
+            qualifications, covering knowledge areas in the humanities, social sciences,
+            STEM, and other fields. <i>(see the figure below)</i>.
+        </p>
+        <div class="example-box">
+            <figure id="example-img">
+                <img src="static/img/overview.png" alt="overview.png">
+                <figcaption class="caption"> fig 1. Overview of our Dataset
+                </figcaption>
+            </figure>
+        </div>
+        <p>
+            Moreover, the C-Eval benchmark
+            test has relatively low data leakage, as it uses simulated exams and previous
+            exams with non-plain text data formats, ensuring that memorization or easy
+            access to large amounts of data on the internet is difficult during the pre-training stage.
+        </p>
+        <p>
+            By using output options instead of a complete answer, we can more easily standardize
+            the output format and accurately evaluate the accuracy of the response. Certain subjects,
+            such as mathematics and chemistry, involve problems that span multiple levels of learning,
+            which is consistent with the way humans process cognition. Therefore, it is possible to
+            analyze the model performance of a given subject at different levels of difficulty and
+            observe the cognitive processes adopted by the model.
+        </p>
+        <p>
+            For more details, you can explore the datatset and leaderboard here:
+            <a class="ext-link" href="static/explore.html">Explore</a> and
+            <a class="ext-link" href="static/leaderboard.html">Leaderboard</a>.
+        </p>
+        <p>
+            Our dataset is distributed under the XXX
+            license. You can download our dataset from
+            <a href="" class="ext-link">
+                XXX
+            </a>
+            (Google Drive), or check out our
+            <a href="https://github.com/SJTU-LIT/ceval" class="ext-link" target="blank">github
+                repository</a>.
+        </p>
+    </div> -->
+
+    <!-- <hr> -->
+    <!-- <div class="section">
+        <div id="paper" class="anchor"></div>
+        <h1>Paper</h1>
+        <p>
+            <papername>C-EVAL: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models</papername>
+            <br>
+            Yuzhen Huang<sup>*</sup><sup>1</sup>, Yuzhuo Bai<sup>*</sup><sup>2</sup>, Zhihao Zhu<sup>1</sup>, Junlei
+            Zhang<sup>1</sup>, Jinghan Zhang<sup>1</sup>, Tangjun Su<sup>1</sup>, Junteng Liu<sup>1</sup>, Chuancheng Lv<sup>2</sup>,
+            Yikai Zhang<sup>1</sup>, Jiayi Lei<sup>1</sup>, Fanchao Qi<sup>2</sup>, Yao Fu<sup>3</sup>, Maosong Sun<sup>2</sup>,
+            Junxian He<sup>†</sup><sup>1</sup><br>
+            <small><sup>1</sup>Shanghai Jiao Tong University <sup>2</sup>Tsinghua University <sup>3</sup>University of
+                Edinburgh<br>
+                <sup>*</sup>Equal Contribution &nbsp; <sup>†</sup>Corresponding author</small><br><br>
+            <a href="XXX" class="ext-link" target="_blank">arxiv</a> -->
+    <!-- <a href="XXX" class="ext-link" target="_blank">PDF</a> -->
+    <!-- </p> -->
+    <!-- <p>
+        <a href="static/img/paper_thumbnail.png" class="ext-link" target="blank">
+            <img src="static/img/paper_thumbnail.png" style="width: 100%;">
+        </a>
+    </p> -->
+    <!--    </div>-->
+
+    <!-- <hr> -->
+    <!-- <div class="section">
+        <div id="code" class="anchor"></div>
+        <h1>Code</h1>
+        <p>
+            View on the <a href="https://github.com/SJTU-LIT/ceval" class="ext-link" target="blank">github
+            repository</a>.
+        </p>
+    </div> -->
+
+    <!-- <hr> -->
+    <div class="section">
+        <div id="citation" class="anchor"></div>
+        <h1>Citation</h1>
+        <!-- <p>
+            If the paper, codes, or the dataset inspires you, please cite us:
+        </p> -->
+        <pre class="bibtax">
+@misc{huang2024enviroexam,
+      title={EnviroExam: Benchmarking Environmental Science Knowledge of Large Language Models}, 
+      author={Yu Huang and Liang Guo and Wanqian Guo and Zhe Tao and Yang Lv and Zhihao Sun and Dongfang Zhao},
+      year={2024},
+      eprint={2405.11265},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+        </pre>
+        <br>
+    </div>
+
+    <!-- Authors -->
+    <div class="section" id="authors" style="align-content: center">
+        <h1>Authors</h1>
+        <div style="text-align: center; width: 100%; padding-top: 1em;">
+            <div class="profile">
+                <a href="https://orcid.org/0009-0008-8951-0344">
+                    <img class="profile-img" src="./static/img/huang_yu.jpg">
+                    <p>Yu Huang<sup>1</sup></p>
+                </a>
+            </div>
+            <div class="profile">
+                <a href="https://homepage.hit.edu.cn/guoliang?lang=en">
+                    <img class="profile-img" src="./static/img/guo_liang.png">
+                    <p>Liang Guo<sup>1</sup></p>
+                </a>
+            </div>
+            <div class="profile">
+                <a href="https://homepage.hit.edu.cn/guowanqian?lang=en">
+                    <img class="profile-img" src="./static/img/guo_wan_qian.jpg">
+                    <p>Wanqian Guo<sup>1</sup></p>
+                </a>
+            </div>
+            <div class="profile">
+                <a href="https://orcid.org/0000-0001-7030-6425">
+                    <img class="profile-img" src="./static/img/tao_zhe.jpg">
+                    <p>Zhe Tao<sup>1</sup></p>
+                </a>
+            </div>
+            <br>
+            <div class="profile">
+                <a href="https://orcid.org/0009-0007-4485-0663">
+                    <img class="profile-img" src="./static/img/lv_yang.jpg">
+                    <p>Yang Lv<sup>1</sup></p>
+                </a>
+            </div>
+            <div class="profile" style="">
+                <a href="https://orcid.org/0009-0009-2603-1028">
+                    <img class="profile-img" src="./static/img/sun_zhi_hao.jpg">
+                    <p>Zhihao Sun<sup>1</sup></p>
+                </a>
+            </div>
+            <div class="profile">
+                <a href="https://orcid.org/0009-0005-9071-2005">
+                    <img class="profile-img" src="./static/img/zhao_dong_fang.jpg">
+                    <p>Dongfang Zhao<sup>1</sup></p>
+                </a>
+            </div>
+<!--            <div class="profile">-->
+<!--                <a href="https://allenai.org/team/peterc">-->
+<!--                    <img class="profile-img" src="./static/img/Peter-Clark.jpg">-->
+<!--                    <p>Peter Clark<sup>3</sup></p>-->
+<!--                </a>-->
+<!--            </div>-->
+
+<!--            <div class="profile">-->
+<!--                <a href="http://ashwinkalyan.com/">-->
+<!--                    <img class="profile-img" src="./static/img/ashwinkalyan.jpg">-->
+<!--                    <p>Ashwin Kalyan<sup>3</sup></p>-->
+<!--                </a>-->
+<!--            </div>-->
+        </div>
+        <div style="text-align:center; display: inline-block; width: 100%; margin-top: 0">
+            <p>
+                <sup>1</sup>School of environment, Harbin institute of technology &nbsp;&nbsp;
+<!--                <sup>2</sup>Arizona State University &nbsp;&nbsp;-->
+<!--                <sup>3</sup>Allen Institute for AI &nbsp;&nbsp;-->
+            </p>
+        </div>
+    </div>
+
+
+    <!-- Contact -->
+    <div class="section" id="contact">
+        <h1>Contact Us</h1>
+        <p>Have any questions about EnviroExam? Please contact us at <a href="mailto:enviroscientistoffical@gmail.com" class="ext-link">enviroscientistoffical@gmail.com</a>
+            or create an issue on <a
+                    href="https://github.com/EnviroScientist/enviroexam" class="ext-link" target="_blank"> Github</a>.
+            For potential collaboration, please contact <a href="mailto:23s129119@stu.hit.edu.cn" class="ext-link">23s129119@stu.hit.edu.cn</a>.
+        </p>
+    </div>
+
+    <!-- Affiliation  -->
+    <div class="section" style="text-align: center;">
+        <div class="container">
+            <div class="profile">
+            <a href="https://www.hit.edu.cn/" target="_blank" rel="external">
+                <img class="center-block" src="static/img/hit.jpg"
+                     style="height:6em; max-width: 100%;"></a>
+        </div>
+        <div class="profile">
+            <a href="https://env.hit.edu.cn/" target="_blank" rel="external">
+                <img class="center-block" src="static/img/hit_env.jpg"
+                     style="height:6em; max-width: 100%;"></a>
+        </div>
+<!--        <div class="profile">-->
+<!--            <a href="https://hkust.edu.hk/" target="_blank" rel="external">-->
+<!--                <img class="center-block" src="static/img/UST.png"-->
+<!--                     style="height:6em; max-width: 100%;"></a>-->
+<!--        </div>-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+<div id="footer" style="font-size: 12pt; text-align: center">
+    © 2024 HIT. Website developed based on the C-eval template.
+</div>
+</body>
+
+</html>

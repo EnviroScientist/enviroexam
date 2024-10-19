@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户界面 | C-Eval: 一个适用于大语言模型的多层次多学科中文评估套件</title>
+    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="stylesheet" href="css/main_zh.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/nav_zh.css">
+    <link rel="stylesheet" href="css/user_interface.css">
+    <script src="javascript/login.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    <script src="javascript/user_interface.js"></script>
+</head>
+<body>
+<!-- 登录框 -->
+<div id="login-box" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="hidden" name="action" value="login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <span class="switch-link">Register now</span></p>
+        <p><a id="forgot-link" href="./forgot_password.html">Forgot password?</a></p>
+    </div>
+</div>
+
+<!-- 注册框 -->
+<div id="register-box" class="modal">
+    <!-- 模态框内容 -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="hidden" name="action" value="register">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" name="new-username" required>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="email">Your email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code" required>
+            <button id="send-code-btn" type="button">Send code</button>
+            <input type="submit" value="Register">
+            <p>Already have an account? <span class="switch-link">Login now</span></p>
+        </form>
+    </div>
+</div>
+
+<div id="nav_zh">
+    <div id="icon_zh">
+        <img src="img/logo.png" id="nav-icon_zh">
+        <a class="nav-button" href="../index.html#home"
+           style="margin-left: 2px; font-size: 24px">C-Eval
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="../index_zh.html#home_zh">主页</a>
+        <!--            <a class="nav-button" href="#dataset">Dataset</a>-->
+        <a class="nav-button" href="../index_zh.html#data_zh">数据</a>
+        <a class="nav-button" href="https://arxiv.org/abs/2305.08322">论文</a>
+        <a class="nav-button" href="https://github.com/SJTU-LIT/ceval">Github</a>
+        <!--            <a class="nav-button" href="#authors">Authors</a>-->
+        <a class="nav-button" href="leaderboard_zh.html">排行榜</a>
+        <a class="nav-button" href="user_interface_zh.html">结果提交</a>
+        <a class="nav-button" href="explore_zh.html">探索</a>
+        <!--        <a class="nav-button" href="visualize_zh.html">可视化</a>-->
+        <a class="nav-button" href="../index_zh.html#contact_zh">联系我们</a>
+        &nbsp;<a class="language" href="#"> 中 </a>
+        <a class="language"><span>|</span></a>
+        <a class="language" href="user_interface.html"> EN </a>
+        <span class="btn-container">
+            <span id="loginMsg"></span>
+            <button class="btn btn_login" id="loginBtn">登录</button>
+            <button class="btn btn_register" id="registerBtn">注册</button>
+            <button class="btn btn_logout" id="logoutBtn">登出</button>
+        </span>
+    </div>
+</div>
+
+<div id="body_zh">
+    <br><br><br><br>
+    <h1>欢迎，<span id="username_display"></span>！</h1> <br>
+    <p>欢迎将您的 C-Eval 测试结果提交给我们！提交结果后，您将自动在此处看到您的测试准确率，并可下载一个包含每个学科准确率的详细 json 文件以及对提交格式检查结果的log文件。如果您想将提交结果添加到公共排行榜上，请填写这份<a
+            href="https://wj.qq.com/s2/12231619/29e6/" class="ext-link" target="_blank">腾讯表单</a>。<a class="ext-link"
+                                                                                                    href="https://github.com/SJTU-LIT/ceval#how-to-submit"
+                                                                                                    target="_blank">如何提交？</a>。
+    </p>
+    <div class="rules"><p>基本上传限制和说明</p>
+        <ul>
+            <li><strong>最大记录上传数：</strong>每个用户最多可以上传<span class="restrictions">10个记录</span>。如果您需要上传更多，请手动删除一些现有记录。</li>
+            <li><strong>提交限制：</strong>您可以<span class="restrictions">每天提交5次结果</span>，结果以(.json)格式提交。具体请参考<a
+                    id="upload_sample"
+                    href="../app/download.php?userId=sample&createTime=sample">样例</a>的格式和内容进行提交。
+            </li>
+        </ul>
+    </div>
+    <div id="content" style="display: flex; align-items: center;">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="fileInput" class="custom-file-input">1.选择文件</label>
+            <input type="file" id="fileInput" name="file" accept=".json" onchange="updateFilename()" required>
+            <input type="text" id="filenameInput" name="filename" readonly value="upload your file here">
+            <button type="submit">2.上传</button>
+        </form>
+        <button id="processBtn">3.处理</button>
+    </div>
+        <br>
+    <div class="rules"><b>文件上传步骤</b>：1. 点击<b>“选择文件”</b>按钮选择您的结果文件，该文件应以.json为扩展名。2. 点击<b>“上传”</b>按钮上传文件。3.
+        点击<b>“处理”</b>按钮，等待1—2秒钟，结果将在下面的<b>“提交记录”</b>中显示。
+    </div>
+    <h2>提交记录</h2>
+    <table id="submissionsTable" border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>STEM</th>
+            <th>社会科学</th>
+            <th>人文学科</th>
+            <th>其他学科</th>
+            <th>平均</th>
+            <th>平均(Hard)</th>
+            <th>详细信息URL</th>
+            <th>创建时间</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+</body>
+</html>
+

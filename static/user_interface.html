@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Interface | C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation
+        Models</title>
+    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/user_interface.css">
+    <script src="javascript/login.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    <script src="javascript/user_interface.js"></script>
+</head>
+<body>
+<!-- 登录框 -->
+<div id="login-box" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="hidden" name="action" value="login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <span class="switch-link">Register now</span></p>
+        <p><a id="forgot-link" href="./forgot_password.html">Forgot password?</a></p>
+    </div>
+</div>
+
+<!-- 注册框 -->
+<div id="register-box" class="modal">
+    <!-- 模态框内容 -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="hidden" name="action" value="register">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" name="new-username" required>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="code">Verification Code:</label>
+            <input type="text" id="code" name="code" required>
+            <button id="send-code-btn" type="button">Send code</button>
+            <input type="submit" value="Register">
+            <p>Already have an account? <span class="switch-link">Login now</span></p>
+        </form>
+    </div>
+</div>
+
+<div id="nav">
+    <div id="icon">
+        <img src="img/logo.png" id="nav-icon">
+        <a class="nav-button" href="../index.html#home"
+           style="margin-left: 2px; font-size: 24px">C-Eval
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="../index.html#home">Home</a>
+        <!--            <a class="nav-button" href="#dataset">Dataset</a>-->
+        <a class="nav-button" href="../index.html#data">Data</a>
+        <a class="nav-button" href="https://arxiv.org/abs/2305.08322">Paper</a>
+        <a class="nav-button" href="https://github.com/SJTU-LIT/ceval">Github</a>
+        <!--            <a class="nav-button" href="#authors">Authors</a>-->
+        <a class="nav-button" href="leaderboard.html">Leaderboard</a>
+        <a class="nav-button" href="user_interface.html">Submit</a>
+        <a class="nav-button" href="explore.html">Explore</a>
+        <!--        <a class="nav-button" href="visualize.html">Visualize</a>-->
+        <a class="nav-button" href="../index.html#contact">Contact</a>
+        &nbsp; <a class="language" href="#"> EN </a>
+        <a class="language"><span>|</span></a>
+        <a class="language" href="user_interface_zh.html"> 中 </a>
+        <span class="btn-container">
+                <span id="loginMsg"></span>
+                <button class="btn btn_login" id="loginBtn">Login</button>
+                <button class="btn btn_register" id="registerBtn">Register</button>
+                <button class="btn btn_logout" id="logoutBtn">Logout</button>
+            </span>
+    </div>
+</div>
+
+<div id="body">
+    <br><br><br><br>
+    <h1>Welcome , <span id="username_display"></span>!</h1> <br>
+    <p>Welcome to submit your results to C-Eval! After submitting your results, you will automatically see your test
+        accuracy here, and a breakdown of accuracy per subject is available to download as a json file. Additionally,
+        you can download a log file for the results of the submission format check. If you
+        want to add your submission results to the public leaderboard, please fill out this <a
+                href="https://wj.qq.com/s2/12231619/29e6/" class="ext-link" target="_blank">Tencent form</a>. <a
+                class="ext-link" href="https://github.com/SJTU-LIT/ceval#how-to-submit" target="_blank">How To
+            Submit?</a>
+    </p>
+    <div class="rules">
+        <p>Upload Restrictions and Instructions</p>
+        <ul>
+            <li><strong>Maximum Record Uploads:</strong> Each user is allowed to upload a <span class="restrictions">maximum of 10 records</span>.
+                If you
+                need to upload more, you will need to manually delete some of your existing records.
+            </li>
+            <li><strong>Submission Limit:</strong> You can submit results up to <span class="restrictions">five times per day</span>
+                in (.json) format.
+                Please refer to the format and content of the <a id="upload_sample"
+                                                                 href="../app/download.php?userId=sample&createTime=sample">sample</a>
+                for submission details.
+            </li>
+        </ul>
+    </div>
+    <div id="content" style="display: flex; align-items: center;">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="fileInput" class="custom-file-input">1.Choose File</label>
+            <input type="file" id="fileInput" name="file" accept=".json" onchange="updateFilename()" required>
+            <input type="text" id="filenameInput" name="filename" readonly value="upload your file here">
+            <button type="submit">2.Upload</button>
+        </form>
+        <button id="processBtn">3.Process</button>
+    </div>
+    <br>
+    <div class="rules"><b>File Upload Steps</b>: 1.Select your result file with the .json extension by clicking the <b>"Choose
+        File"</b> button. 2.
+        Upload the file by clicking the <b>"Upload"</b> button. 3.Click the <b>"Process"</b> button and wait for 1-2
+        seconds, the result will be displayed in the <b>"Submission Records"</b> section below.
+    </div>
+    <h2>Submission Records</h2>
+
+    <table id="submissionsTable" border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>STEM</th>
+            <th>Social Sciences</th>
+            <th>Humanities</th>
+            <th>Others</th>
+            <th>Average</th>
+            <th>Avg(Hard)</th>
+            <th>Details URL</th>
+            <th>Created At</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索 | C-Eval: 一个适用于大语言模型的多层次多学科中文评估套件</title>
+    <link rel="icon" href="img/logo.png" type="image/icon type">
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css"
+          integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/explore.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js"></script>
+    <script src="javascript/problems.js"></script>
+    <script src="javascript/explore.js" defer></script>
+    <script src="javascript/login.js" defer></script>
+
+</head>
+
+<body>
+<!-- 登录框 -->
+<div id="login-box" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="hidden" name="action" value="login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <span class="switch-link">Register now</span></p>
+        <p><a id="forgot-link" href="./forgot_password.html">Forgot password?</a></p>
+    </div>
+</div>
+
+<!-- 注册框 -->
+<div id="register-box" class="modal">
+    <!-- 模态框内容 -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="hidden" name="action" value="register">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" name="new-username" required>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="email">Your email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code" required>
+            <button id="send-code-btn" type="button">Send code</button>
+            <input type="submit" value="Register">
+            <p>Already have an account? <span class="switch-link">Login now</span></p>
+        </form>
+    </div>
+</div>
+<div id="nav">
+    <div id="icon">
+        <img src="img/logo.png" id="nav-icon">
+        <a class="nav-button" href="../index_zh.html"
+           style="margin-left: 2px; font-size: 24px">C-Eval
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="../index_zh.html#home_zh">主页</a>
+        <!--            <a class="nav-button" href="#dataset">Dataset</a>-->
+        <a class="nav-button" href="../index_zh.html#data_zh">数据</a>
+        <a class="nav-button" href="https://arxiv.org/abs/2305.08322">论文</a>
+        <a class="nav-button" href="https://github.com/SJTU-LIT/ceval">Github</a>
+        <!--            <a class="nav-button" href="#citation">Citation</a>-->
+        <a class="nav-button" href="leaderboard_zh.html">排行榜</a>
+        <a class="nav-button" href="user_interface_zh.html">结果提交</a>
+        <a class="nav-button" href="#">探索</a>
+        <!--        <a class="nav-button" href="visualize_zh.html">可视化</a>-->
+        <a class="nav-button" href="../index_zh.html#contact_zh">联系我们</a>
+        &nbsp;<a class="language" href="#"> 中 </a>
+        <a class="language"><span>|</span></a>
+        <a class="language" href="explore.html"> EN </a>
+        <span class="btn-container">
+            <span id="loginMsg"></span>
+            <button class="btn btn_login" id="loginBtn">登录</button>
+            <button class="btn btn_register" id="registerBtn">注册</button>
+            <button class="btn btn_logout" id="logoutBtn">登出</button>
+        </span>
+    </div>
+</div>
+
+<button class="optionsbtn">☰</button>
+<div class="row">
+    <div id="option-panel" class="left">
+        <a href="javascript:void(0)" class="closebtn">×</a>
+        <h3 class="opttitle">Sample Filters</h3>
+        <div class="optbox"></div>
+        <button type="button" class="pure-button pure-button-primary" id="filter-submit">Refresh data!</button>
+    </div>
+    <div id="display">
+        <br><br>
+        <h1 id="multiline">C-Eval（一个适用于大语言模型的多层次多学科中文评估套件）</h1>
+        <br><br>
+        <div id="content-body">
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

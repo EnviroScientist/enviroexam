@@ -1,0 +1,180 @@
+/* 隐藏模态框 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    text-align: center; /* 居中文本 */
+}
+
+/* 模态框内容 */
+.modal-content {
+    background-color: #fefefe;
+    max-width: 350px;
+    position: relative;
+}
+
+/* 关闭按钮 */
+.close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 关闭按钮:hover 样式 */
+.close:hover {
+    color: #000;
+}
+
+
+#login-box, #register-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    text-align: center; /* 居中文本 */
+    border-radius: 10px;
+}
+
+#login-box h2, #register-box h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.5rem; /* 字体大小 */
+    font-weight: bold; /* 字体加粗 */
+    margin-bottom: 10px; /* 下边距 */
+}
+
+#login-box label, #register-box label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px; /* 字体大小 */
+}
+
+#login-box input[type="text"], #login-box input[type="password"], #register-box input[type="text"], #register-box input[type="password"] {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/*#send-code-btn {*/
+#register-form input[name="code"],
+#register-form button#send-code-btn {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#register-form input[name="code"] {
+    width: 60%;
+}
+
+#register-form button#send-code-btn {
+    width: 28%;
+    background-color: #05469e;
+    color: #fff;
+    padding: 7px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#register-form button#send-code-btn:hover {
+    background-color: #cd002f;
+}
+
+#register-form button#send-code-btn:active {
+    background-color: #cd002f;
+}
+
+/*}*/
+
+#register-box input[type="email"] {
+    width: 90%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#login-box input[type="submit"], #register-box input[type="submit"] {
+    background-color: #802697;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 80%; /* 将宽度设置为 100% */
+    margin-top: 10px; /* 添加上边距 */
+}
+
+#login-box form, #register-box form {
+    position: relative; /* 相对定位 */
+    width: 100%;
+}
+
+#login-box p, #register-box p {
+    font-size: 14px;
+    text-align: right;
+    margin-top: 10px; /* 添加上边距 */
+}
+
+#login-box .switch-link, #register-box .switch-link {
+    color: #cd002f;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#forgot-link {
+    color: #cd002f;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#login-box .switch-link:hover, #register-box .switch-link:hover, #forgot-link:hover {
+    color: #05469e;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+}
+
+#login-box .switch-link:active, #register-box .switch-link:active, #forgot-link:active {
+    color: #802697;
+}
+
+/*@media only screen and (max-width: 480px) {*/
+/*  #login-box p, #register-box p{*/
+/*    font-size: 12px;*/
+/*  }*/
+/*}*/

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard | C-Eval: A Multi-Level Multi-Discipline Chinese Evaluation Suite for Foundation Models</title>
+    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+    <script src="javascript/login.js" defer></script>
+    <script type="text/javascript" src="javascript/sort-table.js"></script>
+    <script type="text/javascript" src="javascript/leaderboard_subject_data.js" defer></script>
+<!--    <script type="text/javascript" src="javascript/leaderboard.js" defer></script>-->
+    <script type="text/javascript" src="javascript/leaderboard.js" defer></script>
+</head>
+
+<body>
+<div id="nav">
+    <div id="icon">
+        <img src="img/logo.png" id="nav-icon">
+        <a class="nav-button" href="../index.html#home"
+           style="margin-left: 2px; font-size: 24px">C-Eval
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="../index.html#home">Home</a>
+        <!--            <a class="nav-button" href="#dataset">Dataset</a>-->
+        <a class="nav-button" href="../index.html#data">Data</a>
+        <a class="nav-button" href="https://arxiv.org/abs/2305.08322">Paper</a>
+        <a class="nav-button" href="https://github.com/SJTU-LIT/ceval">Github</a>
+        <!--            <a class="nav-button" href="#authors">Authors</a>-->
+        <a class="nav-button" href="leaderboard.html">Leaderboard</a>
+        <a class="nav-button" href="user_interface.html">Submit</a>
+        <a class="nav-button" href="explore.html">Explore</a>
+        <!--        <a class="nav-button" href="visualize.html">Visualize</a>-->
+        <a class="nav-button" href="../index.html#contact">Contact</a>
+        <a class="language" href="#"> EN </a>
+        <a class="language"><span>|</span></a>
+        <a class="language" href="leaderboard_zh.html"> 中 </a>
+        <span class="btn-container">
+            <span id="loginMsg"></span>
+<!--            <button class="btn btn_login" id="loginBtn">Login</button>-->
+<!--            <button class="btn btn_register" id="registerBtn">Register</button>-->
+<!--            <button class="btn btn_logout" id="logoutBtn">Logout</button>-->
+        </span>
+    </div>
+</div>
+
+<div id="body">
+    <br><br><br><br>
+    <div class="section">
+        <h1>Leaderboard - C-Eval</h1>
+        <p style="font-size: 18px; color:red">
+            Disclaimer: Evaluation can never be comprehensive, and any leaderboard could be hacked in unhealthy ways, this is especially concerning in the case of LLMs, where most models are not public. For example, good results could be achieved by distilling answers from strong models (e.g. GPT-4) or even humans, or by attempting to find and add the exact test data to the training set -- scores obtained in such ways are immediately meaningless. Therefore, we advise users to read the leaderboard with caution, and we split the leaderboard as (1) <i>Models With Open Access</i> -- these models have public weights or APIs and the users may verify their performance themselves; (2) <i>Models with Limited Access</i>: these models are not readily accessible to the public.
+        </p>
+
+        <!-- <p>
+            In order to ensure the authority of our leaderboard, we have divided our list into "Models With Open Access" and "Models With Limited Access" to differentiate between different ways of accessing the models.
+            If a model supports access through APIs or weights, it will be included in the "Models With Open Access" section.
+            Otherwise, the model will be included in the "Models With Limited Access" section.
+        </p> -->
+        <p>
+            Results for different subjects and the average test results are
+            shown below.
+            The results are from either zero-shot or few-shot prompting (Model details including prompting format can be viewed by clicking into each model).
+            <!-- note that few-shot is not necessarily better than zero-shot, for example,
+            zero-shot is better for many instruction-tuned models in our own runs. -->
+            <!-- In cases we tested the models in both zero- and few-shot settings, we report
+            the setting with higher overall average accuracy.  -->
+
+            You are welcome to submit your model's test predictions to C-Eval at any time (either zero-shot or few-shot eval is fine) and the submission system will automatically compute the scores. Click
+            <a href="user_interface.html" class="ext-link">here
+            </a> to submit your results (your results will not be public on the leaderboard unless you request to do
+            so).
+        </p>
+        <!-- <p style="font-size: 16px;color:#05469e">- 2023/06/08: We updated the leaderboard with the result of the one with
+            the higher average score in
+            <b>few-shot</b> and <b>zero-shot</b>. Please check the model details page for more details</p> -->
+
+        <p style="font-size: 14px;">(Note: <span style="color:#802697">*</span> indicates that the model was evaluated
+            by the
+            C-Eval team, while other results are obtained through users' submitted predictions.)</p>
+
+        <h2>Models With Open Access</h2>
+        <!-- https://www.cssscript.com/sort-table-header-column/ -->
+        <table class="js-sort-table" id="results">
+            <thead>
+            <tr>
+                <td class="js-sort-number"><strong>#</strong></td>
+                <td class="js-sort-string"><strong>Model</strong></td>
+                <td class="js-sort-string"><strong>Creator</strong></td>
+                <td class="js-sort-string"><strong>Access</strong></td>
+                <!--                <td class="js-sort-number"><strong>Release</strong></td>-->
+                <td class="js-sort-date"><strong>Submission Date</strong></td>
+                <!--                <td class="js-sort-number"><strong>Size</strong></td>-->
+                <!--                <td class="js-sort-number"><strong>Param</strong></td>-->
+                <td class="js-sort-number"><strong><u>Avg</u></strong></td>
+                <td class="js-sort-number"><strong><u>Avg(Hard)</u></strong></td>
+                <td class="js-sort-number"><strong>STEM</strong></td>
+                <td class="js-sort-number"><strong>Social Science</strong></td>
+                <td class="js-sort-number"><strong>Humanities</strong></td>
+                <td class="js-sort-number"><strong>Others</strong></td>
+            </tr>
+            </thead>
+            <!-- 这里使用循环遍历数据并生成表格行 -->
+            <tbody id="table-body">
+            </tbody>
+        </table>
+        <br><br>
+        <h2>Models With Limited Access</h2>
+        <table class="js-sort-table" id="results">
+            <thead>
+            <tr>
+                <td class="js-sort-number"><strong>#</strong></td>
+                <td class="js-sort-string"><strong>Model</strong></td>
+                <td class="js-sort-string"><strong>Creator</strong></td>
+                <td class="js-sort-string"><strong>Access</strong></td>
+                <!--                <td class="js-sort-number"><strong>Release</strong></td>-->
+                <td class="js-sort-date"><strong>Submission Date</strong></td>
+                <!--                <td class="js-sort-number"><strong>Size</strong></td>-->
+                <!--                <td class="js-sort-number"><strong>Param</strong></td>-->
+                <td class="js-sort-number"><strong><u>Avg</u></strong></td>
+                <td class="js-sort-number"><strong><u>Avg(Hard)</u></strong></td>
+                <td class="js-sort-number"><strong>STEM</strong></td>
+                <td class="js-sort-number"><strong>Social Science</strong></td>
+                <td class="js-sort-number"><strong>Humanities</strong></td>
+                <td class="js-sort-number"><strong>Others</strong></td>
+            </tr>
+            </thead>
+            <!-- 这里使用循环遍历数据并生成表格行 -->
+            <tbody id="table-body-other">
+            </tbody>
+        </table>
+        <p>
+        </p>
+    </div>
+</div>
+</body>
+
+</html>

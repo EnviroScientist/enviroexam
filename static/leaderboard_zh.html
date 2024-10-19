@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排行榜 | C-Eval: 一个适用于大语言模型的多层次多学科中文评估套件</title>
+    <link rel="icon" href="img/logo.png" type="image/icon type">
+    <link rel="stylesheet" href="css/main_zh.css">
+    <link rel="stylesheet" href="css/login.css">
+    <!--    # 引入名为"main_zh.css"的CSS样式表，用于设置文档的主要样式。-->
+    <link rel="stylesheet" href="css/nav_zh.css">
+    <!--    # 引入名为"nav.css"的CSS样式表，用于设置文档的导航栏样式。-->
+    <link rel="stylesheet" href="css/leaderboard.css">
+    <script type="text/javascript" src="javascript/sort-table.js"></script>
+    <script src="javascript/login.js" defer></script>
+    <script type="text/javascript" src="javascript/leaderboard_subject_data.js" defer></script>
+<!--    <script type="text/javascript" src="javascript/leaderboard_.js" defer></script>-->
+<!--    <script type="text/javascript" src="javascript/leaderboard_other_.js" defer></script>-->
+    <script type="text/javascript" src="javascript/leaderboard.js" defer></script>
+</head>
+
+<body>
+<!-- 登录框 -->
+<div id="login-box" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="hidden" name="action" value="login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <span class="switch-link">Register now</span></p>
+        <p><a id="forgot-link" href="./forgot_password.html">Forgot password?</a></p>
+    </div>
+</div>
+
+<!-- 注册框 -->
+<div id="register-box" class="modal">
+    <!-- 模态框内容 -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="hidden" name="action" value="register">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" name="new-username" required>
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" name="new-password" required>
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="email">Your email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code" required>
+            <button id="send-code-btn" type="button">Send code</button>
+            <input type="submit" value="Register">
+            <p>Already have an account? <span class="switch-link">Login now</span></p>
+        </form>
+    </div>
+</div>
+
+<!--    主页内容-->
+<div id="nav_zh">
+    <div id="icon_zh">
+        <img src="img/logo.png" id="nav-icon_zh">
+        <a class="nav-button" href="../index_zh.html"
+           style="margin-left: 2px; font-size: 24px">C-Eval
+        </a>
+    </div>
+    <div>
+        <a class="nav-button" href="../index_zh.html#home_zh">主页</a>
+        <!--            <a class="nav-button" href="#dataset">Dataset</a>-->
+        <a class="nav-button" href="../index_zh.html#data_zh">数据</a>
+        <a class="nav-button" href="https://arxiv.org/abs/2305.08322">论文</a>
+        <a class="nav-button" href="https://github.com/SJTU-LIT/ceval">Github</a>
+        <!--            <a class="nav-button" href="#authors">Authors</a>-->
+        <a class="nav-button" href="leaderboard_zh.html">排行榜</a>
+        <a class="nav-button" href="user_interface_zh.html">结果提交</a>
+        <a class="nav-button" href="explore_zh.html">探索</a>
+        <!--            <a class="nav-button" href="visualize_zh.html">可视化</a>-->
+        <a class="nav-button" href="../index_zh.html#contact_zh">联系我们</a>
+        &nbsp;<a class="language" href="#"> 中 </a>
+        <a class="language"><span>|</span></a>
+        <a class="language" href="leaderboard.html"> EN </a>
+        <span class="btn-container">
+                <span id="loginMsg"></span>
+                <button class="btn btn_login" id="loginBtn">登录</button>
+                <button class="btn btn_register" id="registerBtn">注册</button>
+                <button class="btn btn_logout" id="logoutBtn">登出</button>
+            </span>
+    </div>
+</div>
+
+<div id="body_zh">
+    <br><br><br><br>
+    <div class="section">
+        <h1>排行榜 - C-Eval</h1>
+        <p style="font-size: 18px; color:red">
+            声明: 任何评测都有其局限性，以及任何的榜单都可以被不健康的刷榜。尤其是在大模型时代，大部分模型并未公开，用户也无法在实际应用中验证这些模型。 例如，在榜单上得到高分的方式有：从GPT-4的预测结果蒸馏，找人工标注然后蒸馏，在网上找到原题加入训练集中微调模型 -- 然而这样得到的分数是没有意义的。因此，我们建议用户谨慎看待以下榜单。 我们同时也将榜单拆分成2个： (1) <i>公开访问的模型</i> -- 这些模型有公开权重或者API，用户可以自行检查验证它们的效果; (2) <i>受限访问的模型</i>: 这些模型暂时没有对公众开放。
+        </p>
+        <!-- <p>
+            为了保证榜单的权威性，我们将我们的榜单拆分为“公开访问的模型”和“限制访问的模型”，以区分不同的访问方式的模型。如果模型支持API或权重的方式进行访问，
+            则会被列入“公开访问的模型”的部分。否则，模型将被列入“限制访问的模型”。
+        </p> -->
+        <p>
+            不同科目和平均的测试结果展示如下。
+            以下结果代表zero-shot或者few-shot测试（模型描述包括prompt形式可点进模型查看）。
+            <!-- ---- 注意few-shot不一定比zero-shot效果好，
+            例如在我们自己的测试中发现许多经过指令微调之后的模型在zero-shot下更好。 -->
+            <!-- 我们自己测试的很多模型我们同时有zero-shot和few-shot的结果，我们在排行榜中显示了总平均分更好的那个设置。（模型描述包括prompt形式可点进模型查看） -->
+        <!-- </p> -->
+        <!-- <p> -->
+            随时欢迎你们向C-Eval提交模型的预测（zero-shot或者few-shot的结果都可以），我们的提交系统会根据预测自动计算分数。点击
+            <a href="user_interface.html" class="ext-link">这里
+            </a> 开始提交（默认情况下你的提交结果只对你自己可见，并不会公开在排行榜上，你可以在提交界面请求公开）。
+        </p>
+        <!-- <p style="font-size: 16px;color:#05469e">- 2023/06/08: 我们对排行榜进行了更新，最新榜单的数据为<b>Few-shot</b>和<b>Zero-shot</b>中表现最优的结果，具体细节请查看模型的详细页面
+        </p> -->
+        <p style="font-size: 14px;">（注：<span style="color:#802697">*</span> 表示该模型结果由 C-Eval 团队测试得到，而其他结果是通过用户提交的模型预测计算分数得到。）
+        </p>
+        <h2>公开访问的模型</h2>
+        <!-- https://www.cssscript.com/sort-table-header-column/ -->
+        <table class="js-sort-table" id="results">
+            <thead>
+            <tr>
+                <td class="js-sort-number"><strong>#</strong></td>
+                <td class="js-sort-string"><strong>模型名称</strong></td>
+                <td class="js-sort-string"><strong>发布机构</strong></td>
+                <td class="js-sort-string"><strong>访问方式</strong></td>
+                <!--                    <td class="js-sort-number"><strong>发布形式</strong></td>-->
+                <td class="js-sort-date"><strong>提交时间</strong></td>
+<!--                                    <td class="js-sort-number"><strong>Size</strong></td>-->
+                <!--                    <td class="js-sort-number"><strong>Param</strong></td>-->
+                <td class="js-sort-number"><strong><u>平均</u></strong></td>
+                <td class="js-sort-number"><strong><u>平均(Hard)</u></strong></td>
+                <td class="js-sort-number"><strong>STEM</strong></td>
+                <td class="js-sort-number"><strong>社会科学</strong></td>
+                <td class="js-sort-number"><strong>人文科学</strong></td>
+                <td class="js-sort-number"><strong>其他</strong></td>
+            </tr>
+            </thead>
+            <!-- 这里使用循环遍历数据并生成表格行 -->
+            <tbody id="table-body">
+            </tbody>
+        </table>
+        <br><br>
+        <h2>受限访问的模型</h2>
+        <table class="js-sort-table" id="results">
+            <thead>
+            <tr>
+                <td class="js-sort-number"><strong>#</strong></td>
+                <td class="js-sort-string"><strong>模型名称</strong></td>
+                <td class="js-sort-string"><strong>发布机构</strong></td>
+                <td class="js-sort-string"><strong>访问方式</strong></td>
+                <!--                    <td class="js-sort-number"><strong>发布形式</strong></td>-->
+                <td class="js-sort-date"><strong>提交时间</strong></td>
+                <!--                    <td class="js-sort-number"><strong>Size</strong></td>-->
+                <!--                    <td class="js-sort-number"><strong>Param</strong></td>-->
+                <td class="js-sort-number"><strong><u>平均</u></strong></td>
+                <td class="js-sort-number"><strong><u>平均(Hard)</u></strong></td>
+                <td class="js-sort-number"><strong>STEM</strong></td>
+                <td class="js-sort-number"><strong>社会科学</strong></td>
+                <td class="js-sort-number"><strong>人文科学</strong></td>
+                <td class="js-sort-number"><strong>其他</strong></td>
+            </tr>
+            </thead>
+            <!-- 这里使用循环遍历数据并生成表格行 -->
+            <tbody id="table-body-other">
+            </tbody>
+        </table>
+        <p>
+        </p>
+    </div>
+</div>
+</body>
+
+</html>
